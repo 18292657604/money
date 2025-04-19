@@ -1,3 +1,7 @@
+
+/**
+ *  描述：快手极速版任务自动化
+ */
 auto.waitFor();//判断和等待开启无障碍
 app.launchApp('快手极速版');//只有一个快手极速版所以直接Launch就可以，不用包名
 sleep(10000);//等待splash时间
@@ -45,8 +49,11 @@ doTask(taskName_comment, iconPath_comment)
 
 // stopApp('快手极速版');//停止APP（Android7和Android10亲测）
 
+
 /**
- *  去收藏
+ * 
+ * @param {任务名称} taskName 
+ * @param {任务图标存储路径} taskIconPath 
  */
 function doTask(taskName, taskIconPath){
     sleep(5000);
@@ -75,6 +82,13 @@ function doTask(taskName, taskIconPath){
 
 }
 
+/**
+ * 点击任务图标
+ * 
+ * @param {任务名称} taskName 
+ * @param {任务图标存储路径} taskIconPath 
+ * @returns 
+ */
 function clickTaskIcon(taskName, taskIconPath) {
     sleep(5000); // 等待页面加载
 
@@ -124,7 +138,12 @@ function clickTaskIcon(taskName, taskIconPath) {
 
 }
 
-function sendComment(comment) {
+/**
+ * 发送评论
+ * 
+ * @param {评论内容} comment 
+ */
+function sendComment(commentContent) {
     // 点击评论框的父布局以激活输入法
     let textHolderContainer = id("com.kuaishou.nebula:id/text_holder_container_layout").findOne();
     if (textHolderContainer) {
@@ -132,7 +151,7 @@ function sendComment(comment) {
         sleep(1000); // 等待输入法弹出
 
         // 输入评论内容
-        setText(comment);
+        setText(commentContent);
         sleep(1000); // 等待文本输入完成
 
         // 点击发送按钮
